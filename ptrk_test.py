@@ -5,3 +5,43 @@
 # SPDX-License-Identifier: GPL3
 # License-Filename: LICENSE
 
+from machines import DrumMK1, Syn1
+
+
+
+class Machine:
+
+    def __init__(self, machine_class):
+        self.machine_instance = machine_class()
+        self.presets = dict()
+        self.pattern_list = dict()
+        self.pattern_list.add(Pattern(self.machine_instance, 0))
+        self.num_patterns = 1
+
+    def add_pattern(self, name=''):
+        self.pattern_list.add(Pattern(self.machine_instance, self.num_patterns))
+        self.num_patterns += 1
+
+
+class Pattern:
+
+    def __init__(self, machine_instance, index, name=''):
+        self.index = index
+        self.current_track_count = 1
+        self.name = name or str(self.index) 
+
+    def resize_length(self, new_length):
+        ...
+
+    def resize_tracks(self, num_tracks):
+        ...
+
+    def duplicate(self):
+        ...
+
+    def delete(self):
+        ...
+
+
+
+
