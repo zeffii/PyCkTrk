@@ -40,8 +40,11 @@ class Pattern:
         ...
 
     def delete(self):
-        ...
+        self.machine_instance.pattern_list.pop(self)
 
+    def clear(self):
+        # wipe all data from pattern
+        ...
 
 
 
