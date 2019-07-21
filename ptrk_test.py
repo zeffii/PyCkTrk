@@ -28,6 +28,8 @@ class Machine:
     def get_pattern_scheme(self, pattern_length=16):
         self.machine_instance.get_pattern_scheme()
 
+    def pattern_as_str(self, index):
+        print(self.machine_instance[index])
 
 class Pattern:
 
@@ -53,5 +55,7 @@ class Pattern:
         # wipe all data from pattern
         ...
 
+    def __repr__(self):
+        return data
 
 

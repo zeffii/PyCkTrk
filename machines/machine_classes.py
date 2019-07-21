@@ -1,10 +1,21 @@
 # gpl3
 
-class Tempo:
-   ...
+class MachineUtils:
 
-class DrumMK1:
-   ...
+    def get_pattern_scheme(self):
+        return self.scheme.split()
 
-class Syn1:
-   ...
+
+class Tempo(MachineUtils):
+    def __init__(self):
+        self.scheme = ".. .."
+
+
+class DrumMK1(MachineUtils):
+    def __init__(self):
+        self.scheme = "... .. .. .. .. .. .."
+
+
+class Syn1(MachineUtils):
+    def __init__(self):
+        self.scheme = "... .. .. .. .."
