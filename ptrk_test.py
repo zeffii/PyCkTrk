@@ -37,7 +37,8 @@ class Pattern:
         self.index = index
         self.current_track_count = 1
         self.name = name or str(self.index)
-        self.data = machine_instance.get_pattern_scheme()
+        self.scheme = machine_instance.get_pattern_scheme()
+        self.pattern_data = []
 
     def resize_length(self, new_length):
         ...
