@@ -34,6 +34,7 @@ class Machine:
 class Pattern:
 
     def __init__(self, machine_instance, index, name='', length=32):
+        self.ui_color = (0.7, 0.7, 0.7)
         self.index = index
         self.length = length
         self.current_track_count = 1
@@ -60,9 +61,6 @@ class Pattern:
 
     def duplicate(self):
         ...
-
-    def delete(self):
-        self.machine_instance.pattern_list.pop(self)
 
     def clear(self):
         # wipe all data from pattern
