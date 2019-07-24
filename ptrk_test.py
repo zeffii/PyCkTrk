@@ -33,15 +33,27 @@ class Machine:
 
 class Pattern:
 
-    def __init__(self, machine_instance, index, name=''):
+    def __init__(self, machine_instance, index, name='', length=32):
         self.index = index
+        self.length = length
         self.current_track_count = 1
         self.name = name or str(self.index)
         self.scheme = machine_instance.get_pattern_scheme()
-        self.pattern_data = []
+        self.scheme_ids = machine_instance.get_pattern_scheme_ids()
+        self.pattern_data = self.generate_empty_pattern()
+    
+    def generate_empty_pattern(self):
+        return [self.scheme for n in range(self.length)]
 
     def resize_length(self, new_length):
-        ...
+        
+        size_difference = new_length - self.length
+        
+        if size_difference > 0:
+            self.pattern_data.extend([self.scheme for n in range(size_difference)])
+        elif size_difference < 0:
+            for n in range(abs(size_difference)):
+               self.pattern_data.pop()
 
     def resize_tracks(self, num_tracks):
         ...
