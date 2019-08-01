@@ -70,3 +70,22 @@ class Pattern:
         return data
 
 
+class SongFile:
+
+    def __init__(self):
+        # hold references to machines
+        self.machines = {}
+
+        # hold the visual location of machines in the sequence editor
+        # also hold the pattern insertion points per machine track.
+        self.track_pool = {}
+
+        # list of paths / wavetable data / or wavetable functions
+        self.sample_pool = {}
+        
+        self.documentation = ""
+        self.song_version = 0.0
+
+    def load_songfile(self, path):
+        ...
+
