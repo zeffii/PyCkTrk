@@ -31,6 +31,7 @@ class Machine:
     def pattern_as_str(self, index):
         print(self.machine_instance[index])
 
+
 class Pattern:
 
     def __init__(self, machine_instance, index, name='', length=32):
@@ -78,14 +79,22 @@ class SongFile:
 
         # hold the visual location of machines in the sequence editor
         # also hold the pattern insertion points per machine track.
-        self.track_pool = {}
+        # here we can separate the machines (tracks) columnar position, 
+        # from the patterns on those tracks
+        self.sequence_data = {"tracks": {} }   # = { "tracks": {}, "trk 1": {}....}
 
         # list of paths / wavetable data / or wavetable functions
         self.sample_pool = {}
-        
+
         self.documentation = ""
         self.song_version = 0.0
+
+        self.changes_detected = False
 
     def load_songfile(self, path):
         ...
 
+    def save_songfile(self, path):
+        ...
+
+    def add_machine(self, column_index):
