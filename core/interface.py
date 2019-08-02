@@ -96,3 +96,6 @@ class SongFile:
 
     def add_machine(self, column_index):
         ...
+
+    def remove_machine(self):
+        ...
