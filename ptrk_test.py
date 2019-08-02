@@ -8,3 +8,6 @@
 from machines import DrumMK1, Syn1, Tempo
 from core.interface import SongFile, Pattern, Machine
 
+repeat_dots = lambda n: "." * n
+
+print(repeat_dots(5))

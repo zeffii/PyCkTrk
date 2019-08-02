@@ -5,12 +5,22 @@
 # SPDX-License-Identifier: GPL3
 # License-Filename: LICENSE
 
+repeat_dots = lambda n: "." * n
+
 class MachineUtils:
 
     def get_pattern_scheme(self):
         group = self.scheme["group"]
         track = self.scheme["track"]
-        return "... .. .. " # self.scheme.split()
+
+        scheme_dict = {}
+        if group:
+            scheme_dict["group"] = (repeat_dots(k[2]) for k in group["columns"].keys())
+        if track:
+            scheme_dict["track"] = (repeat_dots(k[2]) for k in track["columns"].keys())
+
+        return scheme_dict
+
 
     def get_pattern_scheme_ids(self):
         group = self.scheme["group"]
