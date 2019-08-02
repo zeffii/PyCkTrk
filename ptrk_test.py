@@ -13,3 +13,8 @@ song = SongFile()
 song.add_machine("tempo", Machine(Tempo), 0)
 # song.machines["synth"] = Machine(Syn1)
 print(song.machines)
+
+tempo = song.machines["tempo"]
+tempo.add_pattern("initial")
+
+print(tempo.pattern_list)

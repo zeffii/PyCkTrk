@@ -65,7 +65,7 @@ class Pattern:
         ...
 
     def __repr__(self):
-        return data
+        return self.pattern_data
 
 
 class SongFile:
