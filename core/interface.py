@@ -12,12 +12,12 @@ class Machine:
         self.machine_instance = machine_class()
         self.presets = dict()
         self.pattern_list = dict()
+        self.num_patterns = 0
         self.pattern_list[0] = Pattern(self.machine_instance, 0)
-        self.num_patterns = 1
 
     def add_pattern(self, name=''):
         self.num_patterns += 1
-        self.pattern_list[self.num_patterns] = Pattern(self.machine_instance, self.num_patterns+1)
+        self.pattern_list[self.num_patterns] = Pattern(self.machine_instance, self.num_patterns)
 
     def remove_pattern(self, pattern):
         self.pattern_list[pattern.index].clear() 
@@ -37,6 +37,11 @@ class Pattern:
         self.length = length
         self.current_track_count = 0
         self.name = name or str(self.index)
+        
+        self.pattern_labels = ""
+        self.pattern_group_template = ""
+        self.pattern_track_template = ""
+
         self.scheme = machine_instance.get_pattern_scheme()
         self.scheme_ids = machine_instance.get_pattern_scheme_ids()
         self.pattern_data = '....' # self.generate_empty_pattern()
