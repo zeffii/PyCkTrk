@@ -35,11 +35,11 @@ class Pattern:
         self.ui_color = (0.7, 0.7, 0.7)
         self.index = index
         self.length = length
-        self.current_track_count = 1
+        self.current_track_count = 0
         self.name = name or str(self.index)
         self.scheme = machine_instance.get_pattern_scheme()
         self.scheme_ids = machine_instance.get_pattern_scheme_ids()
-        self.pattern_data = self.generate_empty_pattern()
+        self.pattern_data = '....' # self.generate_empty_pattern()
     
     def generate_empty_pattern(self):
         return [self.scheme for n in range(self.length)]
