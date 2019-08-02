@@ -23,7 +23,11 @@ class Machine:
         self.pattern_list[pattern.index].clear() 
 
     def get_pattern_scheme(self, pattern_length=16):
+        # group_part = self.machine_instance.get_group_repr
+        # track_part = self.machine_instance.get_track_repr
+
         self.machine_instance.get_pattern_scheme()
+
 
     def pattern_as_str(self, index):
         print(self.machine_instance[index])

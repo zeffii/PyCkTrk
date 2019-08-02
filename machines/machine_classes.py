@@ -9,28 +9,38 @@ repeat_dots = lambda n: "." * n
 
 class MachineUtils:
 
+    def get_group_repr(self):
+        return ' '.join([repeat_dots(k[2]) for k in self.scheme["group"]["columns"].keys()])
+
+    def get_track_repr(self):
+        return ' '.join([repeat_dots(k[2]) for k in self.scheme["track"]["columns"].keys()])
+
+
+    def get_group_param_names(self):
+        return ' '.join([k[0] for k in self.scheme["group"]["columns"].keys()])
+
+    def get_track_param_names(self):
+        return ' '.join([k[0] for k in self.scheme["track"]["columns"].keys()])
+
+
     def get_pattern_scheme(self):
-        group = self.scheme["group"]
-        track = self.scheme["track"]
 
         scheme_dict = {}
-        if group:
-            scheme_dict["group"] = (repeat_dots(k[2]) for k in group["columns"].keys())
-        if track:
-            scheme_dict["track"] = (repeat_dots(k[2]) for k in track["columns"].keys())
+        if self.scheme["group"]:
+            scheme_dict["group"] = self.get_group_repr()
+        if self.scheme["track"]:
+            scheme_dict["track"] = self.get_track_repr()
 
         return scheme_dict
 
 
     def get_pattern_scheme_ids(self):
-        group = self.scheme["group"]
-        track = self.scheme["track"]
         
         scheme_dict = {}
-        if group:
-            scheme_dict["group"] = (k[0] for k in group["columns"].keys())
-        if track:
-            scheme_dict["track"] = (k[0] for k in track["columns"].keys())
+        if self.scheme["group"]:
+            scheme_dict["group"] = self.get_group_param_names()
+        if self.scheme["track"]:
+            scheme_dict["track"] = self.get_track_param_names()
 
         return scheme_dict
 
