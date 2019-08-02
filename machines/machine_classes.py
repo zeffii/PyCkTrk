@@ -8,23 +8,43 @@
 class MachineUtils:
 
     def get_pattern_scheme(self):
-        return self.scheme.split()
+        group = self.scheme["group"]
+        track = self.scheme["track"]
+        return "... .. .. " # self.scheme.split()
 
     def get_pattern_scheme_ids(self):
-        return self.scheme_ids.split()
+        group = self.scheme["group"]
+        track = self.scheme["track"]
+        
+        scheme_dict = {}
+        if group:
+            scheme_dict["group"] = (k[0] for k in group["columns"].keys())
+        if track:
+            scheme_dict["track"] = (k[0] for k in track["columns"].keys())
+
+        return scheme_dict
+
 
 class Tempo(MachineUtils):
     def __init__(self):
-        self.scheme = ".. .."
-        self.scheme_ids = "bpm tpb"
-
+        self.scheme = {
+            "group": {
+                "name": "params",
+                "description": "bpm and tpb",
+                "columns": {
+                    #  name    type   length/dots
+                    0: ("bpm", "hex", 3),
+                    1: ("tpb", "hex", 2)
+                }},
+            "track": None
+        }
 
 class DrumMK1(MachineUtils):
     def __init__(self):
         self.scheme = "... .. .. .. .. .. .."
-        self.scheme_ids = "note vol a d s r pg"
+
 
 class Syn1(MachineUtils):
     def __init__(self):
         self.scheme = "... .. .. .. .. .. .."
-        self.scheme_ids = "note vol a d s r pg"
+
