@@ -47,7 +47,7 @@ class Pattern:
         self.pattern_track_template = ""
 
         self.scheme = machine_instance.get_pattern_scheme()
-        self.scheme_ids = machine_instance.get_pattern_scheme_ids()
+        self.scheme_ids = machine_instance.get_pattern_scheme("ids")
         self.pattern_data = '....' # self.generate_empty_pattern()
     
     def generate_empty_pattern(self):

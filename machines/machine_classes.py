@@ -16,19 +16,16 @@ class MachineUtils:
         return ' '.join([k[0] for k in self.scheme[kind]["columns"].keys()])
 
 
-    def get_pattern_scheme(self):
+    def get_pattern_scheme(self, kind=None):
+
+        getter_func = self.get_row_repr if not kind else self.get_param_names
+
         scheme_dict = {}
         for section in ["group", "track"]:
             if self.scheme[section]:
-                scheme_dict[section] = self.get_row_repr(section)
+                scheme_dict[section] = gett_func(section)
         return scheme_dict
 
-    def get_pattern_scheme_ids(self):
-        scheme_dict = {}
-        for section in ["group", "track"]:
-            if self.scheme[section]:
-                scheme_dict[section] = self.get_param_names(section)
-        return scheme_dict
 
 
 class Tempo(MachineUtils):
