@@ -9,3 +9,7 @@ from machines.machine_classes import DrumMK1, Syn1, Tempo
 from core.interface import SongFile, Pattern, Machine
 
 
+song = SongFile()
+song.add_machine("tempo", Machine(Tempo), 0)
+# song.machines["synth"] = Machine(Syn1)
+print(song.machines)

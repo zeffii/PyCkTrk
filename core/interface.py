@@ -12,12 +12,12 @@ class Machine:
         self.machine_instance = machine_class()
         self.presets = dict()
         self.pattern_list = dict()
-        self.pattern_list.add(Pattern(self.machine_instance, 0))
+        self.pattern_list[0] = Pattern(self.machine_instance, 0)
         self.num_patterns = 1
 
     def add_pattern(self, name=''):
-        self.pattern_list.add(Pattern(self.machine_instance, self.num_patterns))
         self.num_patterns += 1
+        self.pattern_list[self.num_patterns] = Pattern(self.machine_instance, self.num_patterns+1)
 
     def remove_pattern(self, pattern):
         self.pattern_list[pattern.index].clear() 
@@ -94,8 +94,8 @@ class SongFile:
     def save_songfile(self, path):
         ...
 
-    def add_machine(self, column_index):
-        ...
+    def add_machine(self, name, machine_reference, column_index=-1):
+        self.machines[name] = machine_reference
 
     def remove_machine(self):
         ...
