@@ -7,6 +7,13 @@
 
 repeat_dots = lambda n: "." * n
 
+def prop(**kwargs):
+    param = lambda: None
+    for k, v in kwargs.items():
+        setattr(param, k, v)
+    param.stored_prop_names = [name for name in kwargs.keys()]
+    return param
+
 class MachineUtils:
 
     def get_row_repr(self, kind):
@@ -80,9 +87,9 @@ class Syn1(MachineUtils):
                 "description": "synth params",
                 "columns": {
                     #  name    type   length/dots
-                    0: ("osc 1", "hex", 1),
-                    1: ("osc 2", "hex", 1),
-                    2: ("osc 3", "hex", 1),
+                    0: ("osc 1", "enum", 1),
+                    1: ("osc 2", "enum", 1),
+                    2: ("osc 3", "enum", 1),
                     3: ("mix 1", "hex", 2),
                     4: ("mix 2", "hex", 2),
                     5: ("mix 3", "hex", 2),
