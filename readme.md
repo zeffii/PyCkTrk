@@ -23,3 +23,10 @@ Machine Interface
 - [ ] clone machine with / without patterns
 - [ ] notion of presets
 - [ ] delete machine
+
+SongFile
+
+- [ ] store intrument references
+- [ ] store sequence tracks
+- [ ] store track data (start, end)
+- [ ] set loop points (multi? smart? scripted?)
