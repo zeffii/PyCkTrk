@@ -2,7 +2,9 @@
 
 Pattern Interface
 
-- [ ] create new pattern
+- [ ] create new pattern (auto index)
+- [ ] set pattern name
+- [ ] set pattern colour
 - [ ] add / remove track
 - [ ] add / remove rows
 - [ ] transpose note column
@@ -27,6 +29,8 @@ Machine Interface
 SongFile
 
 - [ ] store intrument references
+- [ ] add empty track (Default 9)
+- [ ] remove track (ask first, if not empty)
 - [ ] store sequence tracks
 - [ ] store track data (start, end)
 - [ ] set loop points (multi? smart? scripted?)
