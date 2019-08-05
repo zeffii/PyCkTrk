@@ -17,10 +17,10 @@ def prop(**kwargs):
 class MachineUtils:
 
     def get_row_repr(self, kind):
-        return ' '.join([repeat_dots(k[2]) for k in self.scheme[kind]["columns"].keys()])
+        return ' '.join([repeat_dots(k[2]) for k in self.scheme[kind]["columns"].values()])
 
     def get_param_names(self, kind):
-        return ' '.join([k[0] for k in self.scheme[kind]["columns"].keys()])
+        return ' '.join([k[0] for k in self.scheme[kind]["columns"].values()])
 
 
     def get_pattern_scheme(self, kind=None):
@@ -30,7 +30,7 @@ class MachineUtils:
         scheme_dict = {}
         for section in ["group", "track"]:
             if self.scheme[section]:
-                scheme_dict[section] = gett_func(section)
+                scheme_dict[section] = getter_func(section)
         return scheme_dict
 
 

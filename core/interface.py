@@ -35,23 +35,26 @@ class Machine:
 
 class Pattern:
 
-    def __init__(self, machine_instance, index, name='', length=32):
+    def __init__(self, machine_instance, index, name='', length=4):
         self.ui_color = (0.7, 0.7, 0.7)
         self.index = index
         self.length = length
         self.current_track_count = 0
         self.name = name or str(self.index)
         
-        self.pattern_labels = ""
-        self.pattern_group_template = ""
-        self.pattern_track_template = ""
-
         self.scheme = machine_instance.get_pattern_scheme()
         self.scheme_ids = machine_instance.get_pattern_scheme("ids")
-        self.pattern_data = '....' # self.generate_empty_pattern()
+        self.pattern_data = self.generate_empty_pattern()
     
     def generate_empty_pattern(self):
-        return [self.scheme for n in range(self.length)]
+
+        data = ""
+        group = self.scheme['group']
+        track = self.scheme['track'] if 'track' in self.scheme else ''
+        row_template = group if not track else group + ' || ' + ((track + '|') * self.current_track_count)
+        for row in range(self.length):
+            data = data + (row_template + '\n')
+        return data
 
     def resize_length(self, new_length):
         
