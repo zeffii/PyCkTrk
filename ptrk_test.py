@@ -17,4 +17,9 @@ print(song.machines)
 tempo = song.machines["tempo"]
 tempo.add_pattern("initial")
 
-print(tempo.pattern_list)
+song.add_machine("synth", Machine(Syn1, tracks=3), 1)
+synth = song.machines["synth"]
+synth.add_pattern()
+
+
+print(synth.pattern_list)

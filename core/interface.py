@@ -8,8 +8,9 @@
 
 class Machine:
 
-    def __init__(self, machine_class):
+    def __init__(self, machine_class, tracks=0):
         self.machine_instance = machine_class()
+        self.machine_instance.track_count = tracks
         self.presets = dict()
         self.pattern_list = dict()
         self.num_patterns = 0
@@ -39,7 +40,7 @@ class Pattern:
         self.ui_color = (0.7, 0.7, 0.7)
         self.index = index
         self.length = length
-        self.current_track_count = 0
+        self.current_machine_track_count = machine_instance.track_count
         self.name = name or str(self.index)
         
         self.scheme = machine_instance.get_pattern_scheme()
@@ -51,7 +52,7 @@ class Pattern:
         data = ""
         group = self.scheme['group']
         track = self.scheme['track'] if 'track' in self.scheme else ''
-        row_template = group if not track else group + ' || ' + ((track + '|') * self.current_track_count)
+        row_template = group if not track else group + ' || ' + ((track + '|') * self.current_machine_track_count)
         for row in range(self.length):
             data = data + (row_template + '\n')
         return data
