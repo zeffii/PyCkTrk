@@ -2,9 +2,9 @@
 
 Pattern Interface
 
-- [ ] create new pattern (auto index)
-- [.] set pattern name
-- [.] set pattern colour
+- [x] create new pattern (auto index)
+- [x] set pattern name
+- [x] set pattern colour
 - [ ] add / remove track
 - [ ] add / remove rows
 - [ ] transpose note column
@@ -19,7 +19,7 @@ Pattern Interface
 Machine Interface
 
 - [ ] load new machine
-- [ ] store patterns associated with machine
+- [x] store patterns associated with machine
 - [ ] notion of group params
 - [ ] notion of track params
 - [ ] clone machine with / without patterns
