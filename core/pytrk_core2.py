@@ -16,10 +16,12 @@ class Machine:
 
 class Pattern:
 
-    def __init__(self, machine_instance, rows=16):
+    def __init__(self, machine_instance, rows=16, name=None):
         self.machine_instance = machine_instance
         self.data = {"group": {}, "tracks": {}}
         self.data['rows'] = rows
+        self.name = name or ""
+        self.colour = [0.9, 0.9, 0.9]
 
     def change_row_count(self, new_count):
         diff = self.data['rows'] - new_count
@@ -38,10 +40,10 @@ class Pattern:
     def wipe_pattern_data(self):
         ...
 
-    def interpolate_selection(self, row_start, row_end, column_identifier):
+    def interpolate_selection(self, selection_params):
         ...
 
-    def transpose_selection(self):
+    def transpose_selection(self, selection_params):
         ...
 
     def print_readable(self):

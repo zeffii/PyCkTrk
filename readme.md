@@ -3,8 +3,8 @@
 Pattern Interface
 
 - [ ] create new pattern (auto index)
-- [ ] set pattern name
-- [ ] set pattern colour
+- [.] set pattern name
+- [.] set pattern colour
 - [ ] add / remove track
 - [ ] add / remove rows
 - [ ] transpose note column
