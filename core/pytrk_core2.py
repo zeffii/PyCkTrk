@@ -19,10 +19,14 @@ class Pattern:
 
     def __init__(self, machine_instance, rows=16, name=None):
         self.machine_instance = machine_instance
-        self.data = {"group": {}, "tracks": {}}
-        self.data['rows'] = rows
+        self.data = self.generate_empty_pattern(rows, name)
         self.name = name or ""
         self.colour = [0.9, 0.9, 0.9]
+
+    def generate_empty_pattern(self, rows, name):
+        data = {"group": {}, "tracks": {}}
+        data['rows'] = rows
+        return data
 
     def change_row_count(self, new_count):
         diff = self.data['rows'] - new_count
