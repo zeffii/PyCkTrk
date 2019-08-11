@@ -20,8 +20,8 @@ Machine Interface
 
 - [ ] load new machine
 - [x] store patterns associated with machine
-- [ ] notion of group params
-- [ ] notion of track params
+- [x] notion of group params
+- [x] notion of track params
 - [ ] clone machine with / without patterns
 - [ ] notion of presets
 - [ ] delete machine

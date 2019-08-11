@@ -42,17 +42,17 @@ class GenDrumSyn1(MachinePrototype):
     def __init__(self):
         self.group_params = {
             0: CKProperty(name='volume', kind='hex', min='000', max='200', default='090'),
-            1: CKProperty(name='thump', kind='hex', min='00', max='20', default='08')
-            2: CKProperty(name='attack', kind='hex', min='00', max='20', default='02')
-            3: CKProperty(name='decay', kind='hex', min='00', max='60', default='28')
-            4: CKProperty(name='sustain', kind='hex', min='00', max='60', default='48')
-            5: CKProperty(name='release', kind='hex', min='00', max='50', default='18')
-            6: CKProperty(name='speed adsr', kind='hex', min='00', max='80', default='10')
+            1: CKProperty(name='thump', kind='hex', min='00', max='20', default='08'),
+            2: CKProperty(name='attack', kind='hex', min='00', max='20', default='02'),
+            3: CKProperty(name='decay', kind='hex', min='00', max='60', default='28'),
+            4: CKProperty(name='sustain', kind='hex', min='00', max='60', default='48'),
+            5: CKProperty(name='release', kind='hex', min='00', max='50', default='18'),
+            6: CKProperty(name='speed adsr', kind='hex', min='00', max='80', default='10'),
             7: CKProperty(name='click', kind='hex', min='00', max='01', default='01')
         }
         self.track_params = {
-            0: CKProperty(name="note", kind="note", default="C-5")
-            1: CKProperty(name="vol", kind="hex", min='00', max='80', default="80")
+            0: CKProperty(name="note", kind="note", default="C-5"),
+            1: CKProperty(name="vol", kind="hex", min='00', max='80', default="80"),
             2: CKProperty(name="pan", kind="hex", min='0', max='80', default="40")
         }
         self.max_tracks = 1
@@ -81,10 +81,11 @@ class GenSynth1(MachinePrototype):
         self.track_params = {
             #  name    type   length/dots
             0: CKProperty(name="note", kind="note", default="C-5"),
-            1: CKProperty(name="vol", kind="hex", 2),
-            2: CKProperty(name="pan", kind="hex", 2)
+            1: CKProperty(name="vol", kind="hex", min='00', max='80', default="80"),
+            2: CKProperty(name="pan", kind="hex", min='0', max='80', default="40")
         }
         self.max_tracks = 6
+        self.source_path = "ck/generators/gensyn1.ck"
 
 
 class Machine:
