@@ -62,7 +62,29 @@ class GenSynth1(MachinePrototype):
     """
     """
     def __init__(self):
-        ...
+        self.group_params = {
+            0: CKProperty(name="osc 1", kind="enum", default="SAW", enums=["SAW", "SIN", "TRI", "NOISE"]),
+            1: CKProperty(name="osc 2", kind="enum", default="SAW", enums=["SAW", "SIN", "TRI", "NOISE"]),
+            2: CKProperty(name="osc 3", kind="enum", default="SAW", enums=["SAW", "SIN", "TRI", "NOISE"]),
+            3: CKProperty(name="mix 1", kind="hex", min='0', max='80', default='80'),
+            4: CKProperty(name="mix 2", kind="hex", min='0', max='80', default='00'),
+            5: CKProperty(name="mix 3", kind="hex", min='0', max='80', default='00'),
+            6: CKProperty(name="attack", kind="hex", min='0', max='80', default='04'),
+            7: CKProperty(name="decay", kind="hex", min='0', max='80', default='40'),
+            8: CKProperty(name="sustain", kind="hex", min='0', max='80', default='30'),
+            9: CKProperty(name="release", kind="hex", min='0', max='80', default='20'),
+            10: CKProperty(name="speed adsr", kind="hex", min='0', max='80', default='10')
+            # voice num
+            # voice detune range
+            # voice detune ranomize drift
+        }
+        self.track_params = {
+            #  name    type   length/dots
+            0: CKProperty(name="note", kind="note", default="C-5"),
+            1: CKProperty(name="vol", kind="hex", 2),
+            2: CKProperty(name="pan", kind="hex", 2)
+        }
+        self.max_tracks = 6
 
 
 class Machine:
