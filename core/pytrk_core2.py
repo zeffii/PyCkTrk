@@ -1,5 +1,5 @@
-# pytrk_core2.py
-# gpl3
+# pylint: disable=E1101
+# pylint: disable=C0301
 
 class CKProperty:
     def __init__(self, **kwargs):
@@ -16,12 +16,13 @@ class CKProperty:
 
 
 class MachinePrototype:
+
     def param_names(self):
         # return group param names, and track param names and dot representation
         # for instance   0: ("tpb", "...")
-        return {
-            'group': [k, (v.name, v.dots) for k, v in self.group_params.items()] if hasattr(self, 'group_params') else [],
-            'track': [k, (v.name, v.dots) for k, v in self.track_params.items()] if hasattr(self, 'track_params') else []}
+        group_param_info = [(v.name, v.dots) for k, v in self.group_params.items()] if hasattr(self, 'group_params') else []
+        track_param_info = [(v.name, v.dots) for k, v in self.track_params.items()] if hasattr(self, 'track_params') else []
+        return dict(group=group_param_info, track=track_param_info)
 
 class GenTempo(MachinePrototype):
     """
@@ -74,12 +75,8 @@ class GenSynth1(MachinePrototype):
             8: CKProperty(name="sustain", kind="hex", min='0', max='80', default='30'),
             9: CKProperty(name="release", kind="hex", min='0', max='80', default='20'),
             10: CKProperty(name="speed adsr", kind="hex", min='0', max='80', default='10')
-            # voice num
-            # voice detune range
-            # voice detune ranomize drift
         }
         self.track_params = {
-            #  name    type   length/dots
             0: CKProperty(name="note", kind="note", default="C-5"),
             1: CKProperty(name="vol", kind="hex", min='00', max='80', default="80"),
             2: CKProperty(name="pan", kind="hex", min='0', max='80', default="40")
