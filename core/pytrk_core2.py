@@ -1,6 +1,35 @@
 # pytrk_core2.py
 # gpl3
 
+class CKProperty:
+    def __init__(self, **kwargs):
+        self.params = kwargs
+    def __repr__(self):
+        ...
+    def __str__(self):
+        ...
+    def name(self):
+        return self.params['name']
+    def dots(self):
+        if self.params['kind'] == 'hex':
+            return '.' * len(self.params['max'])
+
+
+class MachinePrototype:
+    def param_names(self):
+        # return group param names, and track param names and dot representation
+        # for instance   0: ("tpb", "...")
+        return {
+            'group': [k, (v.name, v.dots) for k, v in self.group_params.items()] if hasattr(self, 'group_params') else [],
+            'track': [k, (v.name, v.dots) for k, v in self.track_params.items()] if hasattr(self, 'track_params') else []}
+
+class GenTempo(MachinePrototype):
+    def __init__(self):
+        self.group_params = {
+            0: CKProperty(name='bpm', kind='hex', min='000', max='200', default='090'),
+            1: CKProperty(name='tpb', kind='hex', min='00', max='20', default='08')
+        }
+
 
 class Machine:
 
