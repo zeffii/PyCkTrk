@@ -3,7 +3,21 @@ this file describes the inner workings of Machine
 """
 
 
-from .pattern import Pattern
+from . pattern import Pattern
+
+def make_instance_of(machine_type, num_tracks):
+    """factory function to obtain a class instance of a machine type
+    """
+
+    # import importlib
+    # module = importlib.import_module(module_name)
+    # class_ = getattr(module, class_name)
+    # instance = class_()
+
+    return
+
+
+
 
 class Machine:
 
