@@ -23,9 +23,10 @@ class SongFile:
         self.machines.add(Machine(machine_type)) 
 
     def attach_machine_to_track(self, machine, track_index):
-        self.tracks.insert(track_index, machine)
+        self.tracks.insert(track_index, Track(machine))
 
     def remove_machine_from_track(self, machine):
+        # fully implement later..
         self.tracks.pop(... machine)
 
 
