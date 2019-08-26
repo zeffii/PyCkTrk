@@ -5,16 +5,12 @@ from .machine import Machine
 from .track import Track
 
 
-
-
-
-
 class SongFile:
     
     def __init__(self):
         self.name = "untitled"
         self.machines = set()
-        self.tracks = []
+        self.tracks = {}
 
     def set_name(self, new_name):
         self.name = new_name
@@ -23,11 +19,12 @@ class SongFile:
         self.machines.add(Machine(machine_type)) 
 
     def attach_machine_to_track(self, machine, track_index):
-        self.tracks.insert(track_index, Track(machine))
+        self.tracks[track_index] = Track(machine)
 
-    def remove_machine_from_track(self, machine):
+    def remove_machine_from_track(self, track_index, machine):
         # fully implement later..
-        self.tracks.pop(... machine)
+        # self.tracks[track_index]
+        self.tracks[track_index] = None
 
 
 
