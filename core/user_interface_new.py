@@ -15,7 +15,7 @@ class Example(Frame):
         line_length, line_height = 35, 15
         cell_width = 50
         cell_spacer = 3
-        x_start, y_start = [5, 20]
+        x_start, y_start = [5, 15]
 
         for i in range(5):
             # draw row divider ( left hand )
@@ -37,6 +37,11 @@ class Example(Frame):
         for track in range(num_tracks):
             rc_x1 = x_start + line_length + (track * cell_width) + (cell_spacer * track)
             canvas.create_line(rc_x1 - 1, 0, rc_x1 - 1 , 200, fill="#888")
+
+        # draw column track names
+        for track in range(num_tracks):
+            rc_x1 = x_start + line_length + (track * cell_width) + (cell_spacer * track)
+            canvas.create_text(rc_x1, 0, text="trk:"+str(track), anchor="nw", fill="#222")
 
         print('here')
 
