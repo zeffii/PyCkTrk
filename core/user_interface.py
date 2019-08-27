@@ -21,31 +21,6 @@ window = Tk()
 window.title("PyCkTrk! v.0001")
 window.geometry('550x600')
  
-# chk_state = BooleanVar()
-# chk_state.set(True) #set check state
- 
-# chk = Checkbutton(window, text='Choose', var=chk_state)
-# chk.grid(column=0, row=0)
-
-
- 
-# def create_grid(event=None):
-#     w = c.winfo_width() # Get current width of canvas
-#     h = c.winfo_height() # Get current height of canvas
-#     c.delete('grid_line') # Will only remove the grid_line
-
-#     # Creates all vertical lines at intevals of 100
-#     for i in range(0, w, 100):
-#         c.create_line([(i, 0), (i, h)], tag='grid_line')
-
-#     # Creates all horizontal lines at intevals of 100
-#     for i in range(0, h, 100):
-#         c.create_line([(0, i), (w, i)], tag='grid_line')
-
-
-# c = tk.Canvas(window, height=1000, width=1000, bg='white')
-# c.pack(fill=tk.BOTH, expand=True)
-# c.bind('<Configure>', create_grid)
 
 def clicked():
     file = filedialog.askopenfilename(filetypes = (("Text files","*.txt"),("all files","*.*")))
@@ -68,6 +43,7 @@ cv4.grid(row=1, column=1)
 num_tracks = 6
 line_length, line_height = 20, 15
 cell_width = 50
+cell_spacer = 3
 
 for i in range(5):
     x_start, y_start = [5, 5]
@@ -75,11 +51,15 @@ for i in range(5):
     cv1.create_line(x_start, y_pos, x_start + line_length, y_pos, fill="#999")
     cv1.create_text(x_start, y_pos, anchor='nw', text=str(int(i * 16)), fill="#333")
     for track in range(num_tracks):
-        rc_x1 = x_start + line_length + (track * cell_width)
+        rc_x1 = x_start + line_length + (track * cell_width) + (cell_spacer * track)
         rc_y1 = y_pos
         rc_x2 = rc_x1 + cell_width
         rc_y2 = rc_y1 + line_height
-        cv1.create_rectangle(rc_x1, rc_y1, rc_x2, rc_y2, outline="#bbb", fill="#eee")
+        cv1.create_rectangle(rc_x1, rc_y1, rc_x2, rc_y2, outline="#bbb", fill="#ddd")
+
+for track in range(num_tracks):
+    rc_x1 = x_start + line_length + (track * cell_width) + (cell_spacer * track)
+    cv1.create_line(rc_x1 - 1, 0, rc_x1 - 1 , 200, fill="#888")
 
 window.mainloop()
 
