@@ -72,8 +72,8 @@ cell_width = 50
 for i in range(5):
     x_start, y_start = [5, 5]
     y_pos = y_start + (line_height * i)
-    cv1.create_line(x_start, y_pos, x_start + line_length, y_pos, fill="#fff")
-
+    cv1.create_line(x_start, y_pos, x_start + line_length, y_pos, fill="#999")
+    cv1.create_text(x_start, y_pos, anchor='nw', text=str(int(i * 16)), fill="#333")
     for track in range(num_tracks):
         rc_x1 = x_start + line_length + (track * cell_width)
         rc_y1 = y_pos
