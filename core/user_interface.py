@@ -67,12 +67,12 @@ cv4.grid(row=1, column=1)
 # btn.grid(column=0, row=0) 
 num_tracks = 6
 line_length, line_height = 20, 15
-cell_width = 30
+cell_width = 50
 
 for i in range(5):
     x_start, y_start = [5, 5]
     y_pos = y_start + (line_height * i)
-    cv1.create_line(x_start, y_pos, x_start + line_length, y_pos)
+    cv1.create_line(x_start, y_pos, x_start + line_length, y_pos, fill="#fff")
 
     for track in range(num_tracks):
         rc_x1 = x_start + line_length + (track * cell_width)
