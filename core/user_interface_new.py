@@ -8,7 +8,22 @@ class Example(Frame):
         self.caret_cell = [0, 0]
 
     def move_caret(self, direction):
-        self.canvas.move(self.caret, 20.0, 0.0)
+
+        if direction in {'w','s'}:
+            y = 1 if direction == 's' else -1
+            x = 0
+        else:
+            y = 0
+            x = -1 if direction == 'a' else 1
+
+        self.caret_cell[0] += x
+        self.caret_cell[1] += y
+        cell_width = 50
+        cell_spacer = 3
+        line_height = 15
+
+        
+        self.canvas.move(self.caret, x * (cell_width + cell_spacer), y * line_height)
 
     def init_sequencer_ui(self):
 
@@ -58,7 +73,11 @@ class Example(Frame):
         self.caret = self.canvas.create_rectangle(rc_x1, rc_y1, rc_x2, rc_y2, outline="#bbb", fill="#36a")
 
     def key_pressed(self, event):
-        self.move_caret(event.char)
+
+        if event.char in {'s','a','w','d'}:
+            self.move_caret(event.char)
+        else:
+            print(event.char, 'is unhandled')
 
 
 
