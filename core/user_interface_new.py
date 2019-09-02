@@ -1,6 +1,6 @@
 from tkinter import Tk, Canvas, Frame, BOTH
 
-class Example(Frame):
+class Sequencer(Frame):
 
     def __init__(self):
         super().__init__()
@@ -10,8 +10,13 @@ class Example(Frame):
         self.cell_spacer = 3
         self.line_height = 15
         self.line_length = 35
+        self.num_tracks = 6
+
+        self.x_start = 5
+        self.y_start = 15
 
         self.init_sequencer_ui()
+        self.draw_sequencer_caret()
 
     def move_caret(self, direction):
 
@@ -28,6 +33,13 @@ class Example(Frame):
         #
         # limit caret cell to x > 0  and y > 0
         #
+        if self.caret_cell[0] < 0:
+            self.caret_cell[0] = 0
+            return
+
+        if self.caret_cell[1] < 0:
+            self.caret_cell[1] = 0
+            return
 
         print(self.caret_cell)        
         self.canvas.move(self.caret, x * (self.cell_width + self.cell_spacer), y * self.line_height)
@@ -38,43 +50,39 @@ class Example(Frame):
         self.canvas = Canvas(self, width=400, height=400, background="#aaa")
         self.canvas.grid(row=0, column=0)
 
-        num_tracks = 6
-        x_start, y_start = [5, 15]
-
         for i in range(5):
             # draw row divider ( left hand )
-            y_pos = y_start + (self.line_height * i)
-            self.canvas.create_line(x_start, y_pos, x_start + self.line_length, y_pos, fill="#999")
+            y_pos = self.y_start + (self.line_height * i)
+            self.canvas.create_line(self.x_start, y_pos, self.x_start + self.line_length, y_pos, fill="#999")
             
             # draw row tick
-            self.canvas.create_text(x_start, y_pos, anchor='nw', text=str(int(i * 16)), fill="#333")
+            self.canvas.create_text(self.x_start, y_pos, anchor='nw', text=str(int(i * 16)), fill="#333")
             
             # draw individual cells
-            for track in range(num_tracks):
-                rc_x1 = x_start + self.line_length + (track * self.cell_width) + (self.cell_spacer * track)
+            for track in range(self.num_tracks):
+                rc_x1 = self.x_start + self.line_length + (track * self.cell_width) + (self.cell_spacer * track)
                 rc_y1 = y_pos
                 rc_x2 = rc_x1 + self.cell_width
                 rc_y2 = rc_y1 + self.line_height
                 self.canvas.create_rectangle(rc_x1, rc_y1, rc_x2, rc_y2, outline="#bbb", fill="#ddd")
 
         # draw column divs
-        for track in range(num_tracks):
-            rc_x1 = x_start + self.line_length + (track * self.cell_width) + (self.cell_spacer * track)
+        for track in range(self.num_tracks):
+            rc_x1 = self.x_start + self.line_length + (track * self.cell_width) + (self.cell_spacer * track)
             self.canvas.create_line(rc_x1 - 1, 0, rc_x1 - 1 , 200, fill="#888")
 
         # draw column track names
-        for track in range(num_tracks):
-            rc_x1 = x_start + self.line_length + (track * self.cell_width) + (self.cell_spacer * track)
+        for track in range(self.num_tracks):
+            rc_x1 = self.x_start + self.line_length + (track * self.cell_width) + (self.cell_spacer * track)
             self.canvas.create_text(rc_x1, 0, text="trk:" + str(track), anchor="nw", fill="#222")
 
-        # draw sequencer caret
-        track = 0
-        y_pos = y_start
-        rc_x1 = x_start + self.line_length
-        rc_y1 = y_pos
+    def draw_sequencer_caret(self):
+        rc_x1 = self.x_start + self.line_length
+        rc_y1 = self.y_start
         rc_x2 = rc_x1 + self.cell_width
         rc_y2 = rc_y1 + self.line_height
-        self.caret = self.canvas.create_rectangle(rc_x1, rc_y1, rc_x2, rc_y2, outline="#bbb", fill="#36a")
+        self.caret = self.canvas.create_rectangle(rc_x1, rc_y1, rc_x2, rc_y2, outline="#7ae", fill="")
+
 
     def key_pressed(self, event):
 
@@ -89,11 +97,13 @@ def main():
 
 
     root = Tk()
-    ex = Example()
-    ex.focus_set()
     root.geometry('750x600')
-    ex.bind("<Key>", ex.key_pressed)
     root.title("PyCkTrk! v.0001")
+
+    sequencer = Sequencer()
+    sequencer.focus_set()
+    sequencer.bind("<Key>", sequencer.key_pressed)
+    
     root.mainloop()
 
 
