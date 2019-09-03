@@ -19,7 +19,7 @@ class Sequencer(Frame):
         self.draw_sequencer_caret()
 
     def limit_caret_cell_to_positive_numbers(self):
-        print(self.caret_cell)
+        # print(self.caret_cell)
         if self.caret_cell[0] < 0:
             self.caret_cell[0] = 0
             return True
@@ -50,7 +50,7 @@ class Sequencer(Frame):
         self.canvas = Canvas(self, width=400, height=400, background="#ccc")
         self.canvas.grid(row=0, column=0)
 
-        for i in range(5):
+        for i in range(15):
             # draw row divider ( left hand )
             y_pos = self.y_start + (self.line_height * i)
             self.canvas.create_line(self.x_start, y_pos, self.x_start + self.line_length, y_pos, fill="#999")
@@ -69,7 +69,7 @@ class Sequencer(Frame):
         # draw column divs
         for track in range(self.num_tracks):
             rc_x1 = self.x_start + self.line_length + (track * self.cell_width) + (self.cell_spacer * track)
-            self.canvas.create_line(rc_x1 - 1, 0, rc_x1 - 1 , 200, fill="#888")
+            self.canvas.create_line(rc_x1 - 1, 0, rc_x1 - 1 , 400, fill="#888")
 
         # draw column track names
         for track in range(self.num_tracks):
