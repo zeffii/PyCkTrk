@@ -18,6 +18,15 @@ class Sequencer(Frame):
         self.init_sequencer_ui()
         self.draw_sequencer_caret()
 
+    def limit_caret_cell_to_positive_numbers(self):
+        print(self.caret_cell)
+        if self.caret_cell[0] < 0:
+            self.caret_cell[0] = 0
+            return True
+        if self.caret_cell[1] < 0:
+            self.caret_cell[1] = 0
+            return True
+
     def move_caret(self, direction):
 
         if direction in {'w','s'}:
@@ -30,24 +39,15 @@ class Sequencer(Frame):
         self.caret_cell[0] += x
         self.caret_cell[1] += y
 
-        #
-        # limit caret cell to x > 0  and y > 0
-        #
-        if self.caret_cell[0] < 0:
-            self.caret_cell[0] = 0
+        if self.limit_caret_cell_to_positive_numbers():
             return
 
-        if self.caret_cell[1] < 0:
-            self.caret_cell[1] = 0
-            return
-
-        print(self.caret_cell)        
         self.canvas.move(self.caret, x * (self.cell_width + self.cell_spacer), y * self.line_height)
 
     def init_sequencer_ui(self):
 
         self.pack(fill=BOTH, expand=1)
-        self.canvas = Canvas(self, width=400, height=400, background="#aaa")
+        self.canvas = Canvas(self, width=400, height=400, background="#ccc")
         self.canvas.grid(row=0, column=0)
 
         for i in range(5):
