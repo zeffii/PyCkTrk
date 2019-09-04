@@ -4,8 +4,8 @@ this file contains a few demo machines to allow UI coding to take place
 """
 
 
-from PyCkTrk.core.properties import CKProperty
-from PyCkTrk.core.machine_prototype import MachinePrototype
+from core.properties import CKProperty
+from core.machine_prototype import MachinePrototype
 
 # pylint: disable=C0301
 # pylint: disable=R0903
