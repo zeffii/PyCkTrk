@@ -18,7 +18,8 @@ def main():
     new_song.attach_machine_to_track(machine, 0)
     machine.new_pattern(rows=12)
 
-    print(machine.pattern_dict[0])
+    pattern = machine.pattern_dict[0]
+    # pattern.print_readable()
 
 
     root = Tk()
