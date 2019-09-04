@@ -1,6 +1,8 @@
 # pylint: disable=c0301
 # pylint: disable=c0103
 
+from tkinter import Tk
+
 # from core.song import SongFile
 from core.ui_pattern_editor import PatternEditor
 from core.ui_sequence_editor import Sequencer
