@@ -1,11 +1,32 @@
+# pylint: disable=c0301
+# pylint: disable=c0103
 
 from ui_pattern_editor import PatternEditor
 
-from tkinter import Tk, Canvas, Frame, BOTH
+import tkinter as tk
+from tkinter import Tk, Canvas, Frame, BOTH, StringVar, Label
 
+
+# class StatusBar(Frame):   
+#     def __init__(self, master):
+#         Frame.__init__(self, master)
+#         self.variable = StringVar()        
+#         self.label = Label(
+#             self, bd=1, relief=tk.SUNKEN, 
+#             anchor=tk.W, textvariable=self.variable,
+#             font=('arial',16,'normal'))
+
+#         self.variable.set('Status Bar')
+#         self.label.pack(fill=tk.X)        
+
+#         self.pack()
 
 
 class Sequencer(Frame):
+    """
+    missing Scrollbar
+
+    """
 
     def __init__(self):
         super().__init__()
@@ -20,7 +41,11 @@ class Sequencer(Frame):
         self.x_start = 5
         self.y_start = 15
 
+        # self.status_bar_variable = StringVar()
+        # self.status_bar_variable.set("cursor: " + str(self.caret_cell))
+
         self.init_sequencer_ui()
+        # self.status_bar = StatusBar(self.canvas)
         self.draw_sequencer_caret()
 
     def limit_caret_cell_to_positive_numbers(self):
@@ -34,7 +59,7 @@ class Sequencer(Frame):
 
     def move_caret(self, direction):
 
-        if direction in {'w','s'}:
+        if direction in {'w', 's'}:
             y = 1 if direction == 's' else -1
             x = 0
         else:
@@ -53,8 +78,10 @@ class Sequencer(Frame):
 
         self.pack(fill=BOTH, expand=1)
         self.canvas = Canvas(self, width=400, height=300, background="#ccc")
-        self.canvas.grid(row=0, column=0)
+        # self.canvas.grid(row=0, column=0)
+        self.canvas.pack(side="left")
 
+        # draw rows
         for i in range(15):
             # draw row divider ( left hand )
             y_pos = self.y_start + (self.line_height * i)
@@ -74,12 +101,19 @@ class Sequencer(Frame):
         # draw column divs
         for track in range(self.num_tracks):
             rc_x1 = self.x_start + self.line_length + (track * self.cell_width) + (self.cell_spacer * track)
-            self.canvas.create_line(rc_x1 - 1, 0, rc_x1 - 1 , 400, fill="#888")
+            self.canvas.create_line(rc_x1 - 1, 0, rc_x1 - 1, 400, fill="#888")
 
         # draw column track names
         for track in range(self.num_tracks):
             rc_x1 = self.x_start + self.line_length + (track * self.cell_width) + (self.cell_spacer * track)
             self.canvas.create_text(rc_x1, 0, text="trk:" + str(track), anchor="nw", fill="#222")
+
+        # # status bar
+        # self.status_bar_label = Label(
+        #     self.canvas, bd=1, relief=tk.SUNKEN, anchor=tk.W,
+        #     textvariable=self.status_bar_variable, font=('arial', 11, 'normal'))
+
+
 
     def draw_sequencer_caret(self):
         rc_x1 = self.x_start + self.line_length
@@ -95,6 +129,7 @@ class Sequencer(Frame):
             self.move_caret(event.char)
         else:
             print(event.char, 'is unhandled')
+
 
 
 
