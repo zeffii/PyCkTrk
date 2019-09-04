@@ -1,4 +1,9 @@
+
+from ui_pattern_editor import PatternEditor
+
 from tkinter import Tk, Canvas, Frame, BOTH
+
+
 
 class Sequencer(Frame):
 
@@ -47,7 +52,7 @@ class Sequencer(Frame):
     def init_sequencer_ui(self):
 
         self.pack(fill=BOTH, expand=1)
-        self.canvas = Canvas(self, width=400, height=400, background="#ccc")
+        self.canvas = Canvas(self, width=400, height=300, background="#ccc")
         self.canvas.grid(row=0, column=0)
 
         for i in range(15):
@@ -93,6 +98,7 @@ class Sequencer(Frame):
 
 
 
+
 def main():
 
 
@@ -103,6 +109,8 @@ def main():
     sequencer = Sequencer()
     sequencer.focus_set()
     sequencer.bind("<Key>", sequencer.key_pressed)
+
+    pattern_editor = PatternEditor()
     
     root.mainloop()
 
