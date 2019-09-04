@@ -17,6 +17,19 @@ class Pattern:
         data['rows'] = rows
         return data
 
+    def print_readable(self):
+        columns_in_group = self.machine_instance.columns_in_group
+        columns_in_track = self.machine_instance.columns_in_track
+        num_tracks = len(self.data["tracks"])
+
+        for row in range(self.data['rows']):
+            ...
+
+    def clone(self):
+        new_pattern = Pattern(self.machine_instance, rows=self.data['rows'])
+        new_pattern.data = deepcopy(self.data)
+        return new_pattern
+
     def change_row_count(self, new_count):
         diff = self.data['rows'] - new_count
         if diff == 0:
@@ -40,15 +53,3 @@ class Pattern:
     def transpose_selection(self, selection_params):
         ...
 
-    def print_readable(self):
-        columns_in_group = self.machine_instance.columns_in_group
-        columns_in_track = self.machine_instance.columns_in_track
-        num_tracks = len(self.data["tracks"])
-
-        for row in range(self.data['rows']):
-            ...
-
-    def clone(self):
-        new_pattern = Pattern(self.machine_instance, rows=self.data['rows'])
-        new_pattern.data = deepcopy(self.data)
-        return new_pattern
