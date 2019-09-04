@@ -1,25 +1,12 @@
 # pylint: disable=c0301
 # pylint: disable=c0103
 
+from song import Song
 from ui_pattern_editor import PatternEditor
 
 import tkinter as tk
 from tkinter import Tk, Canvas, Frame, BOTH, StringVar, Label
 
-
-# class StatusBar(Frame):   
-#     def __init__(self, master):
-#         Frame.__init__(self, master)
-#         self.variable = StringVar()        
-#         self.label = Label(
-#             self, bd=1, relief=tk.SUNKEN, 
-#             anchor=tk.W, textvariable=self.variable,
-#             font=('arial',16,'normal'))
-
-#         self.variable.set('Status Bar')
-#         self.label.pack(fill=tk.X)        
-
-#         self.pack()
 
 
 class Sequencer(Frame):
@@ -41,15 +28,10 @@ class Sequencer(Frame):
         self.x_start = 5
         self.y_start = 15
 
-        # self.status_bar_variable = StringVar()
-        # self.status_bar_variable.set("cursor: " + str(self.caret_cell))
-
         self.init_sequencer_ui()
-        # self.status_bar = StatusBar(self.canvas)
         self.draw_sequencer_caret()
 
     def limit_caret_cell_to_positive_numbers(self):
-        # print(self.caret_cell)
         if self.caret_cell[0] < 0:
             self.caret_cell[0] = 0
             return True
@@ -108,10 +90,6 @@ class Sequencer(Frame):
             rc_x1 = self.x_start + self.line_length + (track * self.cell_width) + (self.cell_spacer * track)
             self.canvas.create_text(rc_x1, 0, text="trk:" + str(track), anchor="nw", fill="#222")
 
-        # # status bar
-        # self.status_bar_label = Label(
-        #     self.canvas, bd=1, relief=tk.SUNKEN, anchor=tk.W,
-        #     textvariable=self.status_bar_variable, font=('arial', 11, 'normal'))
 
 
 
@@ -135,6 +113,15 @@ class Sequencer(Frame):
 
 
 def main():
+
+    new_song = Song()
+    new_song.set_name("wooop")
+    new_song.add_machine("GenDrumSyn1")
+    machine = list(new_song.machines)[0]
+    new_song.attach_machine_to_track(machine, 0)
+    machine.new_pattern(rows=12)
+
+    print(machine.pattern_dict[0])
 
 
     root = Tk()
